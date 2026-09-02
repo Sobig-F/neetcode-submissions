@@ -1,0 +1,25 @@
+func isAnagram(s string, t string) bool {
+	set := make(map[rune]int)
+
+	for _, elem := range s {
+		if _, exist := set[rune(elem)]; !exist {
+			set[rune(elem)] = 0 
+		}
+		set[rune(elem)] += 1 
+	}
+
+	for _, elem := range t {
+		if _, exist := set[rune(elem)]; !exist {
+			return false
+		}
+		set[rune(elem)] -= 1
+	}
+
+	for i := range set {
+		if set[i] != 0 {
+			return false
+		}
+	}
+
+	return true
+}
